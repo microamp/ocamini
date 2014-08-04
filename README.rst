@@ -109,7 +109,7 @@ Pattern Matching
 
 Tail Recursion
 ~~~~~~~~~~~~~~
-.. code-blok:: ocaml
+.. code-block:: ocaml
 
     utop[]> let rec sum numbers =
     match numbers with
