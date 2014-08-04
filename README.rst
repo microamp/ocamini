@@ -117,7 +117,7 @@ Tail Recursion
     | first :: rest -> first + sum rest  (* inductive case *)
     ;;
     val sum : int list -> int = <fun>
-    utop[48]> sum [1; 2; 3];;
+    utop[]> sum [1; 2; 3];;
     - : int = 6
 
 Records
