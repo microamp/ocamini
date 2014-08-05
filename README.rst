@@ -19,10 +19,10 @@ Basic Arithmetics
     utop[]> 1 + "a";;  (* ocaml is strongly-typed *)
     Error: This expression has type string but an expression was expected of type
     int
-    utop[]> 1.1 + 2.2;;  (* ocaml's type system is very strict *)
+    utop[]> 1.1 + 2.2;;  (* ocaml's type system is indeed very strict *)
     Error: This expression has type float but an expression was expected of type
     int
-    utop[]> 1.1 +. 2.2;;  (* '+.' adds two floating numbers together *)
+    utop[]> 1.1 +. 2.2;;  (* use '+.' to add two floating numbers together *)
     - : float = 3.3
 
 Let Bindings
@@ -38,14 +38,25 @@ Basic Functions
 ~~~~~~~~~~~~~~~
 .. code-block:: ocaml
 
-    utop[]> let adder x y = x + y;;  (* use 'let' to define a function *)
-    val adder : int -> int -> int = <fun>
+    utop[]> let add x y = x + y;;  (* use 'let' to define a function *)
+    val add : int -> int -> int = <fun>
     utop[]> adder 1 2;;
     - : int = 3
     utop[]> let equal_to_three x = x = 3;;  (* '=' used for equality test as well! *)
     val equal_to_three : int -> bool = <fun>
     utop[]> equal_to_three (adder 1 2);;
     - : bool = true
+
+Type Inference
+~~~~~~~~~~~~~~
+.. code-block:: ocaml
+
+    utop[]> let divide_int x y = x / y;;
+    val divide_int : int -> int -> int = <fun>
+    utop[]> let divide_float x y = x /. y;;
+    val divide_float : float -> float -> float = <fun>
+
+The type of an expression is not explicitly specified in OCaml. Instead, it is "inferred from the available type information about the components of that expression". The compiler determines that the variables, x and y, in the function 'divide_int' are of type int because it knows that the operator '/' requires both operands to be int.
 
 Higher-Order Functions
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -80,9 +91,9 @@ Composite Data Structures: Tuples and Lists
 
 .. code-block:: ocaml
 
-    utop[]> let my_list = ["a"; "b"; "c"];;  (* colon-separated, single type *)
+    utop[]> let my_list = ["a"; "b"; "c"];;  (* semicolon-separated, single type *)
     val my_list : string list = ["a"; "b"; "c"]
-    utop[]> let my_list = ["a"; "b"; 3];;  (* list must be of a single type *)
+    utop[]> let my_list = ["a"; "b"; 3];;  (* all items must be of the same type*)
     Error: This expression has type int but an expression was expected of type
     string
 
